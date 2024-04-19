@@ -172,7 +172,8 @@ fun ChatDetail(navController: NavController, image: String?, name: String?) {
             Image(
                 painter = painterResource(id = R.drawable.wallpaper),
                 contentDescription = "",
-                contentScale = ContentScale.Crop
+                Modifier.fillMaxSize(),
+                contentScale = ContentScale.FillHeight
 
             )
         }

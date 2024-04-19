@@ -1,10 +1,24 @@
 package com.example.chatnest.presentation.ui.navigation
 
+import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.chatnest.domain.model.Screen
 import com.example.chatnest.presentation.ui.screen.CallsScreen
@@ -13,6 +27,7 @@ import com.example.chatnest.presentation.ui.screen.ChatDetail
 import com.example.chatnest.presentation.ui.screen.ChatsScreen
 import com.example.chatnest.presentation.ui.screen.SettingScreen
 import com.example.chatnest.presentation.ui.screen.StatusScreen
+import java.lang.reflect.Modifier
 
 @Composable
 fun Navigation(navController: NavHostController) {
@@ -50,7 +65,8 @@ fun Navigation(navController: NavHostController) {
         }
     }
 }
-/*
+
+
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -83,10 +99,10 @@ fun BottomNavigation(navController: NavController) {
                 }
             }}, icon = {
                 if (current==it.route){
-                    Icon(painter = painterResource(id = it.selectedIcon), contentDescription = "", tint = Color(0XFF007AFF), modifier = Modifier.size(18.dp))
+                    Icon(painter = painterResource(id = it.selectedIcon), contentDescription = "", tint = Color(0XFF007AFF), modifier = androidx.compose.ui.Modifier.size(18.dp))
                 }
                 else{
-                    Icon(painter = painterResource(id = it.unSelectedIcon), contentDescription ="", tint = Color(0XFF545458), modifier = Modifier.size(18.dp) )
+                    Icon(painter = painterResource(id = it.unSelectedIcon), contentDescription ="", tint = Color(0XFF545458), modifier = androidx.compose.ui.Modifier.size(18.dp) )
                 }
             },
 
@@ -101,4 +117,4 @@ fun BottomNavigation(navController: NavController) {
                 )
         }
     }
-}*/
+}
