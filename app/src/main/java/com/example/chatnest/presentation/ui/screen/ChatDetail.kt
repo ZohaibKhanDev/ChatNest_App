@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIos
-import androidx.compose.material.icons.outlined.Videocam
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -57,7 +56,7 @@ fun ChatDetail(navController: NavController, image: String?, name: String?) {
                     )
 
                     AsyncImage(
-                        model = image, contentDescription = "", modifier = Modifier
+                        model =image , contentDescription = "", modifier = Modifier
                             .width(36.dp)
                             .height(36.dp)
                     )

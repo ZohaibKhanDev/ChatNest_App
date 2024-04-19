@@ -27,6 +27,7 @@ import androidx.compose.material.icons.filled.DoneAll
 import androidx.compose.material.icons.filled.KeyboardVoice
 import androidx.compose.material.icons.filled.PhotoCamera
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -92,6 +93,96 @@ fun ChatsScreen(navController: NavController) {
                 )
             }
         )
+    },bottomBar = {
+        BottomAppBar(containerColor = Color.White) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceAround,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(5.dp),
+                    modifier = Modifier.clickable {
+                        navController.navigate(
+                            Screen.Status.route
+                        )
+                    }) {
+                    Image(
+                        painter = painterResource(id = R.drawable.status),
+                        contentDescription = "",
+                        modifier = Modifier
+                            .width(17.dp)
+                            .height(17.dp), colorFilter = ColorFilter.tint(Color.DarkGray)
+                    )
+                    Text(
+                        text = "Status",
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Medium,
+                        color = Color.DarkGray
+                    )
+                }
+
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(5.dp),
+                    modifier = Modifier.clickable { navController.navigate(Screen.Calls.route) }) {
+                    Image(
+                        painter = painterResource(id = R.drawable.call),
+                        contentDescription = "",
+                        modifier = Modifier
+                            .width(17.dp)
+                            .height(17.dp), colorFilter = ColorFilter.tint(Color.DarkGray)
+                    )
+                    Text(text = "Calls", fontSize = 12.sp, fontWeight = FontWeight.Medium, color = Color.DarkGray)
+                }
+
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(5.dp),
+                    modifier = Modifier.clickable { navController.navigate(Screen.Camera.route) }) {
+                    Image(
+                        painter = painterResource(id = R.drawable.camera),
+                        contentDescription = "",
+                        modifier = Modifier
+                            .width(17.dp)
+                            .height(17.dp),
+                    )
+                    Text(text = "Camera", fontSize = 12.sp, fontWeight = FontWeight.Medium)
+                }
+
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(5.dp),
+                    modifier = Modifier.clickable { navController.navigate(Screen.Chats.route) }) {
+                    Image(
+                        painter = painterResource(id = R.drawable.chat),
+                        contentDescription = "",
+                        modifier = Modifier
+                            .width(17.dp)
+                            .height(17.dp), colorFilter = ColorFilter.tint(Color(0XFF007AFF))
+                    )
+                    Text(text = "Chats", fontSize = 12.sp, fontWeight = FontWeight.Medium, color = Color(0XFF007AFF))
+                }
+
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(5.dp),
+                    modifier = Modifier.clickable { navController.navigate(Screen.Settings.route) }) {
+                    Image(
+                        painter = painterResource(id = R.drawable.setting),
+                        contentDescription = "",
+                        modifier = Modifier
+                            .width(20.dp)
+                            .height(20.dp), colorFilter = ColorFilter.tint(Color.DarkGray)
+                    )
+                    Text(text = "Setting", fontSize = 12.sp, fontWeight = FontWeight.Medium)
+                }
+
+            }
+        }
+
     }) {
 
         val chats = listOf(
