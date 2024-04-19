@@ -404,6 +404,9 @@ fun ChatsItem(chat: Chat,navController: NavController) {
     Card(
         modifier = Modifier
             .fillMaxWidth().clickable {Intent(context,SecondActivity::class.java).also {
+               val intent =Intent(context,SecondActivity::class.java)
+                intent.putExtra("image",chat.image.toString())
+                intent.putExtra("name",chat.name)
                 context.startActivity(it)
             }}
             .wrapContentWidth(), colors = CardDefaults.cardColors(Color.White)

@@ -1,3 +1,4 @@
+/*
 package com.example.chatnest.presentation.ui.screen
 
 import android.annotation.SuppressLint
@@ -181,3 +182,4 @@ fun ChatDetail(navController: NavController, image: String?, name: String?) {
 
 }
 
+*/

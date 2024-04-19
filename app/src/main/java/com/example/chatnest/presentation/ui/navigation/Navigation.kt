@@ -14,20 +14,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
 import com.example.chatnest.domain.model.Screen
 import com.example.chatnest.presentation.ui.screen.CallsScreen
 import com.example.chatnest.presentation.ui.screen.CameraScreen
-import com.example.chatnest.presentation.ui.screen.ChatDetail
 import com.example.chatnest.presentation.ui.screen.ChatsScreen
 import com.example.chatnest.presentation.ui.screen.SettingScreen
 import com.example.chatnest.presentation.ui.screen.StatusScreen
-import java.lang.reflect.Modifier
 
 @Composable
 fun Navigation(navController: NavHostController) {
@@ -49,7 +45,7 @@ fun Navigation(navController: NavHostController) {
         composable(Screen.Settings.route){
             SettingScreen(navController = navController)
         }
-        composable(Screen.ChatDetail.route +"/{image}/{name}",
+        /*composable(Screen.ChatDetail.route +"/{image}/{name}",
             arguments = listOf(
                 navArgument("image"){
                     type= NavType.StringType
@@ -62,7 +58,7 @@ fun Navigation(navController: NavHostController) {
             val image=it?.arguments?.getString("image")
             val name=it?.arguments?.getString("name")
             ChatDetail(navController = navController,image,name)
-        }
+        }*/
     }
 }
 
@@ -73,7 +69,7 @@ fun Navigation(navController: NavHostController) {
 fun NavEntry() {
     val navController= rememberNavController()
     Scaffold(bottomBar = { BottomNavigation(navController = navController)}) {
-        com.example.chatnest.presentation.ui.navigation.Navigation(navController = navController)
+       Navigation(navController = navController)
     }
 }
 @Composable
