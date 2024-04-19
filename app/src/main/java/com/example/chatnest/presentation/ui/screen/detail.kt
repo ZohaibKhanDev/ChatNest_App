@@ -56,7 +56,7 @@ import com.example.chatnest.R
 import com.example.chatnest.domain.model.Screen
 import com.example.chatnest.ui.theme.ChatNestTheme
 
-class SecondActivity:ComponentActivity() {
+class SecondActivity : ComponentActivity() {
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,17 +66,24 @@ class SecondActivity:ComponentActivity() {
                 var message by remember {
                     mutableStateOf("")
                 }
-                val intent=getIntent()
-                val name=intent.getStringExtra("name")
-                val image=intent.getStringExtra("image")
+                val intent = getIntent()
+                val name = intent.getStringExtra("name")
+                val image = intent.getStringExtra("image")
 
 
-                val navController= rememberNavController()
+                val navController = rememberNavController()
                 Scaffold(
                     topBar = {
                         CenterAlignedTopAppBar(
                             title = {
-                                    Text(text = name.toString())
+                                Column(
+                                    modifier = Modifier.fillMaxWidth().padding(5.dp),
+                                    horizontalAlignment = Alignment.CenterHorizontally,
+                                    verticalArrangement = Arrangement.Center
+                                ) {
+                                    Text(text = name.toString(), fontSize = 20.sp)
+                                    Text(text = "tap here for contact info", fontSize = 12.sp, fontWeight = FontWeight.W400)
+                                }
                             },
                             colors = TopAppBarDefaults.centerAlignedTopAppBarColors(Color.White),
                             navigationIcon = {
@@ -110,7 +117,10 @@ class SecondActivity:ComponentActivity() {
                                 )
                             })
                     }, bottomBar = {
-                        BottomAppBar(modifier = Modifier.fillMaxWidth(), containerColor = Color.White) {
+                        BottomAppBar(
+                            modifier = Modifier.fillMaxWidth(),
+                            containerColor = Color.White
+                        ) {
                             Row(
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.SpaceAround,
