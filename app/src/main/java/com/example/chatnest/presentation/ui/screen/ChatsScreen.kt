@@ -2,6 +2,7 @@ package com.example.chatnest.presentation.ui.screen
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,22 +14,33 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIos
 import androidx.compose.material.icons.filled.CameraAlt
 import androidx.compose.material.icons.filled.DoneAll
 import androidx.compose.material.icons.filled.KeyboardVoice
 import androidx.compose.material.icons.filled.PhotoCamera
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldColors
+import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
@@ -36,6 +48,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -47,32 +60,27 @@ import com.example.chatnest.domain.model.Chat
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun ChatsScreen(navController: NavController) {
-
+    var search by remember {
+        mutableStateOf("")
+    }
     Scaffold(topBar = {
-        CenterAlignedTopAppBar(title = {
-            Text(text = "Chats", fontSize = 18.sp, fontWeight = FontWeight.W500)
+        TopAppBar(title = {
+            Text(
+                text = "Edit",
+                color = Color(0XFF007AFF),
+                fontSize = 16.sp
+            )
 
 
         },
-            navigationIcon = {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Start
-                ) {
-                    Text(
-                        text = "Edit",
-                        color = Color(0XFF007AFF),
-                        modifier = Modifier.padding(end = 130.dp), fontSize = 16.sp
-                    )
-                }
-            }, colors = TopAppBarDefaults.topAppBarColors(Color(0XFFF6F6F6)),
+            colors = TopAppBarDefaults.topAppBarColors(Color.White),
 
             actions = {
                 Image(
                     painter = painterResource(id = R.drawable.edit),
                     contentDescription = "",
                     contentScale = ContentScale.Crop,
-                    modifier = Modifier.size(24.dp)
+                    modifier = Modifier.padding(end = 10.dp).size(24.dp)
                 )
             }
         )
@@ -178,13 +186,87 @@ fun ChatsScreen(navController: NavController) {
         LazyColumn(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = it.calculateTopPadding()),
+                .background(Color.White)
+                .padding(top = 203.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             items(chats) { chat ->
                 ChatsItem(chat = chat)
             }
+        }
+
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color.White)
+                .padding(top = it.calculateTopPadding(), start = 13.dp),
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.Start
+        ) {
+            Text(
+                text = "Chats",
+                fontSize = 30.sp,
+                fontWeight = FontWeight.Bold,
+            )
+        }
+
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 110.dp),
+            verticalArrangement = Arrangement.SpaceEvenly,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            TextField(
+                value = search,
+                onValueChange = {
+                    search = it
+                },
+                placeholder = {
+                    Text(text = "Search", fontSize = 14.sp)
+                },
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Default.Search,
+                        contentDescription = "",
+                        modifier = Modifier.size(20.dp)
+                    )
+                },
+                colors = TextFieldDefaults.textFieldColors(
+                    focusedTextColor = Color.DarkGray,
+                    focusedPlaceholderColor = Color.DarkGray,
+                    unfocusedPlaceholderColor = Color.DarkGray,
+                    unfocusedTextColor = Color.DarkGray,
+                    containerColor = Color(0XFFF6F6F6),
+                    disabledIndicatorColor = Color.White,
+                    focusedIndicatorColor = Color.White,
+                    unfocusedIndicatorColor = Color.White,
+                ),
+                modifier = Modifier
+                    .height(50.dp)
+                    .width(320.dp),
+                shape = RoundedCornerShape(14.dp),
+                singleLine = true,
+                textStyle = TextStyle(
+                    fontSize = 14.sp, fontWeight = FontWeight.SemiBold
+                ),
+            )
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 25.dp, start = 17.dp, end = 17.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(text = "Broadcast List", color = Color(0XFF007AFF), fontSize = 14.sp, fontWeight = FontWeight.W500)
+
+                Text(text = "New Group", color = Color(0XFF007AFF), fontSize = 14.sp, fontWeight = FontWeight.W500)
+
+
+            }
+            HorizontalDivider(color = Color.LightGray)
         }
 
     }
@@ -215,7 +297,9 @@ fun ChatsItem(chat: Chat) {
             )
 
             Column(
-                modifier = Modifier.fillMaxWidth().weight(1f),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
                 verticalArrangement = Arrangement.SpaceBetween,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -229,7 +313,12 @@ fun ChatsItem(chat: Chat) {
 
                     Text(text = chat.name, fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
 
-                    Text(text = chat.date, fontSize = 14.sp, fontWeight = FontWeight.W400, color = Color.Gray)
+                    Text(
+                        text = chat.date,
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.W400,
+                        color = Color.Gray
+                    )
                 }
 
 
@@ -252,7 +341,12 @@ fun ChatsItem(chat: Chat) {
                             .height(16.dp)
                     )
 
-                    Text(text = chat.lastMessage, fontSize = 15.sp, fontWeight = FontWeight.W400, color = Color.Gray)
+                    Text(
+                        text = chat.lastMessage,
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.W400,
+                        color = Color.Gray
+                    )
                 }
 
             }
@@ -268,7 +362,11 @@ fun ChatsItem(chat: Chat) {
 
         }
 
-        HorizontalDivider(modifier = Modifier.width(296.dp).align(Alignment.End), color = Color(0XFF3C3C43).copy(alpha = 0.20f))
+        HorizontalDivider(
+            modifier = Modifier
+                .width(296.dp)
+                .align(Alignment.End), color = Color(0XFF3C3C43).copy(alpha = 0.20f)
+        )
     }
 
 }
