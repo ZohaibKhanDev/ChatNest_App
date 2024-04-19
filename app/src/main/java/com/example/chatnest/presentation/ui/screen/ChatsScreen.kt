@@ -1,7 +1,7 @@
 package com.example.chatnest.presentation.ui.screen
 
 import android.annotation.SuppressLint
-import android.net.Uri
+import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -30,15 +30,12 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
@@ -53,12 +50,15 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import com.example.chatnest.R
 import com.example.chatnest.domain.model.Chat
 import com.example.chatnest.domain.model.Screen
@@ -400,9 +400,12 @@ fun ChatsScreen(navController: NavController) {
 
 @Composable
 fun ChatsItem(chat: Chat,navController: NavController) {
+    val context= LocalContext.current
     Card(
         modifier = Modifier
-            .fillMaxWidth().clickable { navController.navigate(Screen.ChatDetail.route +"/${chat.image}/${chat.name}") }
+            .fillMaxWidth().clickable {Intent(context,SecondActivity::class.java).also {
+                context.startActivity(it)
+            }}
             .wrapContentWidth(), colors = CardDefaults.cardColors(Color.White)
     ) {
         Row(
