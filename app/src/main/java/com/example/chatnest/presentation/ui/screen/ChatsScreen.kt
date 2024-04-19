@@ -403,12 +403,14 @@ fun ChatsItem(chat: Chat,navController: NavController) {
     val context= LocalContext.current
     Card(
         modifier = Modifier
-            .fillMaxWidth().clickable {Intent(context,SecondActivity::class.java).also {
+            .fillMaxWidth().clickable {
+
                val intent =Intent(context,SecondActivity::class.java)
                 intent.putExtra("image",chat.image.toString())
                 intent.putExtra("name",chat.name)
-                context.startActivity(it)
-            }}
+                context.startActivity(intent)
+
+            }
             .wrapContentWidth(), colors = CardDefaults.cardColors(Color.White)
     ) {
         Row(

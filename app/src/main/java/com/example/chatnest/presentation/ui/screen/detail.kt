@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -65,13 +66,17 @@ class SecondActivity:ComponentActivity() {
                 var message by remember {
                     mutableStateOf("")
                 }
-                val intent=Intent(applicationContext,MainActivity::class.java)
+                val intent=getIntent()
+                val name=intent.getStringExtra("name")
+                val image=intent.getStringExtra("image")
+
+
                 val navController= rememberNavController()
                 Scaffold(
                     topBar = {
                         CenterAlignedTopAppBar(
                             title = {
-                               val name=intent.getStringExtra("name")
+                                    Text(text = name.toString())
                             },
                             colors = TopAppBarDefaults.centerAlignedTopAppBarColors(Color.White),
                             navigationIcon = {
@@ -81,8 +86,6 @@ class SecondActivity:ComponentActivity() {
                                     modifier = Modifier.padding(start = 5.dp),
                                     tint = Color(0XFF007AFF)
                                 )
-
-                              val image=intent.getStringExtra("image")
 
 
                             },
