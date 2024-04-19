@@ -35,4 +35,11 @@ sealed class Screen(
         selectedIcon = R.drawable.setting,
         unSelectedIcon = R.drawable.setting
     )
+
+    object ChatDetail : Screen(
+        "ChatDetail",
+        "ChatDetail",
+        selectedIcon = R.drawable.setting,
+        unSelectedIcon = R.drawable.setting
+    )
 }

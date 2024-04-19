@@ -1,11 +1,14 @@
 package com.example.chatnest.presentation.ui.screen
 
 import android.annotation.SuppressLint
+import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -14,7 +17,9 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIos
 import androidx.compose.material.icons.filled.CameraAlt
@@ -55,6 +60,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.chatnest.R
 import com.example.chatnest.domain.model.Chat
+import com.example.chatnest.domain.model.Screen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -80,11 +86,14 @@ fun ChatsScreen(navController: NavController) {
                     painter = painterResource(id = R.drawable.edit),
                     contentDescription = "",
                     contentScale = ContentScale.Crop,
-                    modifier = Modifier.padding(end = 10.dp).size(24.dp)
+                    modifier = Modifier
+                        .padding(end = 10.dp)
+                        .size(24.dp)
                 )
             }
         )
     }) {
+
         val chats = listOf(
             Chat(
                 "Martin Randolph",
@@ -181,103 +190,128 @@ fun ChatsScreen(navController: NavController) {
                 "4/29/23"
             ),
         )
-
-
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.White)
-                .padding(top = 203.dp),
+        Column(
+            modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            items(chats) { chat ->
-                ChatsItem(chat = chat)
-            }
-        }
 
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.White)
-                .padding(top = it.calculateTopPadding(), start = 13.dp),
-            verticalArrangement = Arrangement.Top,
-            horizontalAlignment = Alignment.Start
-        ) {
-            Text(
-                text = "Chats",
-                fontSize = 30.sp,
-                fontWeight = FontWeight.Bold,
-            )
-        }
-
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 110.dp),
-            verticalArrangement = Arrangement.SpaceEvenly,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            TextField(
-                value = search,
-                onValueChange = {
-                    search = it
-                },
-                placeholder = {
-                    Text(text = "Search", fontSize = 14.sp)
-                },
-                leadingIcon = {
-                    Icon(
-                        imageVector = Icons.Default.Search,
-                        contentDescription = "",
-                        modifier = Modifier.size(20.dp)
-                    )
-                },
-                colors = TextFieldDefaults.textFieldColors(
-                    focusedTextColor = Color.DarkGray,
-                    focusedPlaceholderColor = Color.DarkGray,
-                    unfocusedPlaceholderColor = Color.DarkGray,
-                    unfocusedTextColor = Color.DarkGray,
-                    containerColor = Color(0XFFF6F6F6),
-                    disabledIndicatorColor = Color.White,
-                    focusedIndicatorColor = Color.White,
-                    unfocusedIndicatorColor = Color.White,
-                ),
-                modifier = Modifier
-                    .height(50.dp)
-                    .width(320.dp),
-                shape = RoundedCornerShape(14.dp),
-                singleLine = true,
-                textStyle = TextStyle(
-                    fontSize = 14.sp, fontWeight = FontWeight.SemiBold
-                ),
-            )
-
-            Row(
+            Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 25.dp, start = 17.dp, end = 17.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
+                    .background(Color.White)
+                    .padding(top = it.calculateTopPadding(), start = 13.dp),
+                verticalArrangement = Arrangement.Top,
+                horizontalAlignment = Alignment.Start
             ) {
-                Text(text = "Broadcast List", color = Color(0XFF007AFF), fontSize = 14.sp, fontWeight = FontWeight.W500)
-
-                Text(text = "New Group", color = Color(0XFF007AFF), fontSize = 14.sp, fontWeight = FontWeight.W500)
-
-
+                Text(
+                    text = "Chats",
+                    fontSize = 30.sp,
+                    fontWeight = FontWeight.Bold,
+                )
             }
-            HorizontalDivider(color = Color.LightGray)
-        }
 
+            val scroll = rememberScrollState()
+            Column(
+                modifier = Modifier
+                    .verticalScroll(scroll)
+                    .fillMaxWidth()
+                    .background(Color.White)
+                    .padding(top = 10.dp),
+                verticalArrangement = Arrangement.SpaceEvenly,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                TextField(
+                    value = search,
+                    onValueChange = {
+                        search = it
+                    },
+                    placeholder = {
+                        Text(text = "Search", fontSize = 14.sp)
+                    },
+                    leadingIcon = {
+                        Icon(
+                            imageVector = Icons.Default.Search,
+                            contentDescription = "",
+                            modifier = Modifier.size(20.dp)
+                        )
+                    },
+                    colors = TextFieldDefaults.textFieldColors(
+                        focusedTextColor = Color.DarkGray,
+                        focusedPlaceholderColor = Color.DarkGray,
+                        unfocusedPlaceholderColor = Color.DarkGray,
+                        unfocusedTextColor = Color.DarkGray,
+                        containerColor = Color(0XFFF6F6F6),
+                        disabledIndicatorColor = Color.White,
+                        focusedIndicatorColor = Color.White,
+                        unfocusedIndicatorColor = Color.White,
+                    ),
+                    modifier = Modifier
+                        .height(50.dp)
+                        .width(320.dp),
+                    shape = RoundedCornerShape(14.dp),
+                    singleLine = true,
+                    textStyle = TextStyle(
+                        fontSize = 14.sp, fontWeight = FontWeight.SemiBold
+                    ),
+                )
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color.White)
+                        .padding(top = 25.dp, start = 17.dp, end = 17.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(
+                        text = "Broadcast List",
+                        color = Color(0XFF03a1fc),
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.W500
+                    )
+
+                    Text(
+                        text = "New Group",
+                        color = Color(0XFF03a1fc),
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.W500
+                    )
+
+
+                }
+                HorizontalDivider(
+                    color = Color.LightGray.copy(alpha = 0.40f),
+                    modifier = Modifier.padding(top = 5.dp)
+                )
+            }
+
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color.White)
+                    .padding(top = 1.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                items(chats) { chat ->
+                    ChatsItem(chat = chat,navController)
+                }
+            }
+
+
+
+        }
     }
+
 
 }
 
 @Composable
-fun ChatsItem(chat: Chat) {
+fun ChatsItem(chat: Chat,navController: NavController) {
     Card(
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxWidth().clickable { navController.navigate(Screen.ChatDetail.route +"/${chat.image}/${chat.name}") }
             .wrapContentWidth(), colors = CardDefaults.cardColors(Color.White)
     ) {
         Row(

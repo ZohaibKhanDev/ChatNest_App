@@ -1,10 +1,7 @@
 package com.example.chatnest.presentation.ui.navigation
 
 import android.annotation.SuppressLint
-import android.telecom.Call
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -18,14 +15,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import androidx.navigation.Navigation
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.chatnest.domain.model.Screen
 import com.example.chatnest.presentation.ui.screen.CallsScreen
 import com.example.chatnest.presentation.ui.screen.CameraScreen
+import com.example.chatnest.presentation.ui.screen.ChatDetail
 import com.example.chatnest.presentation.ui.screen.ChatsScreen
 import com.example.chatnest.presentation.ui.screen.SettingScreen
 import com.example.chatnest.presentation.ui.screen.StatusScreen
@@ -50,6 +49,20 @@ fun Navigation(navController: NavHostController) {
         composable(Screen.Settings.route){
             SettingScreen(navController = navController)
         }
+        composable(Screen.ChatDetail.route +"/{image}/{name}",
+            arguments = listOf(
+                navArgument("image"){
+                    type= NavType.StringType
+                },
+                navArgument("name"){
+                    type= NavType.StringType
+                },
+            )
+            ){
+            val image=it?.arguments?.getString("image")
+            val name=it?.arguments?.getString("name")
+            ChatDetail(navController = navController,image,name)
+        }
     }
 }
 
@@ -71,7 +84,7 @@ fun BottomNavigation(navController: NavController) {
         Screen.Settings
     )
     
-    NavigationBar {
+    NavigationBar(containerColor = Color.White) {
         val navStack by navController.currentBackStackEntryAsState()
         val current=navStack?.destination?.route
         item?.forEach { 
