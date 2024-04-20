@@ -76,13 +76,36 @@ class SecondActivity : ComponentActivity() {
                     topBar = {
                         CenterAlignedTopAppBar(
                             title = {
-                                Column(
-                                    modifier = Modifier.fillMaxWidth().padding(5.dp),
-                                    horizontalAlignment = Alignment.CenterHorizontally,
-                                    verticalArrangement = Arrangement.Center
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .padding(start = 30.dp),
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.spacedBy(10.dp)
                                 ) {
-                                    Text(text = name.toString(), fontSize = 20.sp)
-                                    Text(text = "tap here for contact info", fontSize = 12.sp, fontWeight = FontWeight.W400)
+                                    Image(
+                                        painter = painterResource(id = R.drawable.a),
+                                        contentDescription = "",
+                                        contentScale = ContentScale.Crop,
+                                        modifier = Modifier
+                                            .width(44.dp)
+                                            .height(44.dp)
+                                    )
+                                    Column(
+                                        modifier = Modifier.fillMaxWidth(),
+                                        verticalArrangement = Arrangement.Center,
+                                        horizontalAlignment = Alignment.Start
+                                    ) {
+                                        Text(
+                                            text = name.toString(),
+                                            fontSize = 16.sp,
+                                            fontWeight = FontWeight.SemiBold
+                                        )
+
+
+                                    }
+
+
                                 }
                             },
                             colors = TopAppBarDefaults.centerAlignedTopAppBarColors(Color.White),
@@ -90,7 +113,7 @@ class SecondActivity : ComponentActivity() {
                                 Icon(
                                     imageVector = Icons.Default.ArrowBackIos,
                                     contentDescription = "",
-                                    modifier = Modifier.padding(start = 5.dp),
+                                    modifier = Modifier.padding(start = 5.dp).clickable { navController.popBackStack() },
                                     tint = Color(0XFF007AFF)
                                 )
 
@@ -188,10 +211,10 @@ class SecondActivity : ComponentActivity() {
 
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         Image(
-                            painter = painterResource(id = R.drawable.wallpaper),
+                            painter = painterResource(id = R.drawable.chatbg),
                             contentDescription = "",
                             Modifier.fillMaxSize(),
-                            contentScale = ContentScale.FillHeight
+                            contentScale = ContentScale.Crop
 
                         )
                     }
