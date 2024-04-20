@@ -2,7 +2,7 @@ package com.example.chatnest.presentation.ui.screen
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,143 +14,112 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIosNew
-import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.chatnest.R
-import com.example.chatnest.domain.model.Screen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun SettingScreen(navController: NavController) {
     Scaffold(topBar = {
-        CenterAlignedTopAppBar(
+        MediumTopAppBar(
             title = {
-                Text(text = "Chats", fontSize = 19.sp, fontWeight = FontWeight.W500)
-            },
-            navigationIcon = {
-
-                Icon(
-                    imageVector = Icons.Default.ArrowBackIosNew,
-                    contentDescription = "",
-                    tint = Color(0XFF007AFF)
-                )
-                Text(
-                    text = "Setting",
-                    color = Color(0XFF007AFF),
-                    modifier = Modifier.padding(start = 20.dp)
-                )
-            }, colors = TopAppBarDefaults.topAppBarColors(Color(0XFFF6F6F6))
-        )
-    },bottomBar = {
-        BottomAppBar(containerColor = Color.White) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceAround,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(5.dp),
-                    modifier = Modifier.clickable {
-                        navController.navigate(
-                            Screen.Status.route
-                        )
-                    }) {
-                    Image(
-                        painter = painterResource(id = R.drawable.status),
-                        contentDescription = "",
-                        modifier = Modifier
-                            .width(17.dp)
-                            .height(17.dp), colorFilter = ColorFilter.tint(Color.DarkGray)
-                    )
+                Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
                     Text(
-                        text = "Status",
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.Medium,
-                        color = Color.DarkGray
+                        text = "Setting",
+                        fontSize = 19.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        modifier = Modifier.align(
+                            Alignment.Center
+                        )
                     )
-                }
 
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(5.dp),
-                    modifier = Modifier.clickable { navController.navigate(Screen.Calls.route) }) {
+                }
+            },
+            colors = TopAppBarDefaults.topAppBarColors(Color(0XFFF6F6F6)), modifier = Modifier
+                .fillMaxWidth()
+                .height(98.dp)
+        )
+    }) {
+
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = 99.dp)
+                .background(Color.White),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceBetween
+        ) {
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(76.dp),
+                elevation = CardDefaults.cardElevation(1.dp),
+                colors = CardDefaults.cardColors(
+                    Color.White
+                )
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxSize(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
                     Image(
-                        painter = painterResource(id = R.drawable.call),
+                        painter = painterResource(id = R.drawable.e),
                         contentDescription = "",
+                        contentScale = ContentScale.Crop,
                         modifier = Modifier
-                            .width(17.dp)
-                            .height(17.dp), colorFilter = ColorFilter.tint(Color.DarkGray)
+                            .padding(start = 6.dp)
+                            .width(64.dp)
+                            .height(64.dp)
+                            .align(Alignment.CenterVertically)
                     )
-                    Text(text = "Calls", fontSize = 12.sp, fontWeight = FontWeight.Medium, color = Color.DarkGray)
-                }
 
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(5.dp),
-                    modifier = Modifier.clickable { navController.navigate(Screen.Camera.route) }) {
-                    Image(
-                        painter = painterResource(id = R.drawable.camera),
-                        contentDescription = "",
+                    Column(
                         modifier = Modifier
-                            .width(17.dp)
-                            .height(17.dp),
-                    )
-                    Text(text = "Camera", fontSize = 12.sp, fontWeight = FontWeight.Medium)
-                }
+                            .weight(1f)
+                            .fillMaxWidth()
+                            .padding(start = 6.dp),
+                        horizontalAlignment = Alignment.Start,
+                        verticalArrangement = Arrangement.spacedBy(2.dp)
+                    ) {
+                        Text(text = "Sabohiddin", fontSize = 20.sp, fontWeight = FontWeight.W400)
 
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(5.dp),
-                    modifier = Modifier.clickable { navController.navigate(Screen.Chats.route) }) {
-                    Image(
-                        painter = painterResource(id = R.drawable.chat),
-                        contentDescription = "",
-                        modifier = Modifier
-                            .width(17.dp)
-                            .height(17.dp), colorFilter = ColorFilter.tint(Color.DarkGray)
-                    )
-                    Text(text = "Chats", fontSize = 12.sp, fontWeight = FontWeight.Medium, color = Color.DarkGray)
-                }
+                        Text(
+                            text = "Android Developer- UI ",
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.W300, color = Color.Gray.copy(alpha = 0.80f)
+                        )
+                    }
 
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(5.dp),
-                    modifier = Modifier.clickable { navController.navigate(Screen.Settings.route) }) {
-                    Image(
-                        painter = painterResource(id = R.drawable.setting),
-                        contentDescription = "",
-                        modifier = Modifier
-                            .width(20.dp)
-                            .height(20.dp), colorFilter = ColorFilter.tint(Color(0XFF007AFF))
-                    )
-                    Text(text = "Setting", fontSize = 12.sp, fontWeight = FontWeight.Medium, color = Color(0XFF007AFF))
+                    Row(
+                        modifier = Modifier.padding(end = 6.dp).width(50.dp),
+                        horizontalArrangement = Arrangement.End,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(imageVector = Icons.Default.ArrowBackIosNew, contentDescription = "", modifier = Modifier.rotate(180f).width(18.dp).height(20.dp), tint = Color.Gray.copy(alpha = 0.50f))
+                    }
                 }
-
             }
         }
 
-    }) {
-
-        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Text(text = "Setting")
-        }
     }
 }
