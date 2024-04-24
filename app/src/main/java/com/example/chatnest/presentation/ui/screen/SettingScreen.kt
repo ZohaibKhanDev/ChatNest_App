@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIosNew
+import androidx.compose.material.icons.filled.Key
 import androidx.compose.material.icons.filled.Laptop
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.StarOutline
@@ -44,7 +45,7 @@ import androidx.navigation.NavController
 import com.example.chatnest.R
 
 @OptIn(ExperimentalMaterial3Api::class)
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "InvalidColorHexValue")
 @Composable
 fun SettingScreen(navController: NavController) {
     Scaffold(topBar = {
@@ -142,7 +143,7 @@ fun SettingScreen(navController: NavController) {
 
         Card(
             modifier = Modifier
-                .padding(top = 229.dp)
+                .padding(top = 224.dp)
                 .fillMaxWidth()
                 .height(120.dp),
             elevation = CardDefaults.cardElevation(1.dp),
@@ -192,7 +193,198 @@ fun SettingScreen(navController: NavController) {
 
                 }
 
-                Box(modifier = Modifier.fillMaxWidth().padding(top = 15.dp), contentAlignment = Alignment.Center){
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 15.dp), contentAlignment = Alignment.Center
+                ) {
+                    HorizontalDivider(color = Color.Gray.copy(alpha = 0.20f))
+                }
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 15.dp, top = 16.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(15.dp)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(8.dp))
+                            .background(Color(0XFF07AD9F))
+                            .width(36.dp)
+                            .height(36.dp), contentAlignment = Alignment.Center
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.Laptop,
+                            contentDescription = "",
+                            tint = Color.White
+                        )
+                    }
+                    Text(
+                        text = "WhatsApp Web/Desktop",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.SemiBold
+                    )
+                    Icon(
+                        imageVector = Icons.Default.ArrowBackIosNew,
+                        contentDescription = "",
+                        modifier = Modifier
+                            .padding(start = 62.dp)
+                            .size(18.dp)
+                            .rotate(180f),
+                        tint = Color.Gray.copy(alpha = 0.40f)
+                    )
+
+                }
+
+
+            }
+        }
+
+
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 399.dp)
+                .height(238.dp),
+            elevation = CardDefaults.cardElevation(5.dp),
+            colors = CardDefaults.cardColors(
+                Color.White
+            )
+        ) {
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                verticalArrangement = Arrangement.SpaceBetween,
+                horizontalAlignment = Alignment.Start
+            ) {
+
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 15.dp, top = 10.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(15.dp)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(8.dp))
+                            .background(Color(0XFFF397AFE))
+                            .width(36.dp)
+                            .height(36.dp), contentAlignment = Alignment.Center
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.Key,
+                            contentDescription = "",
+                            tint = Color.White, modifier = Modifier.rotate(90f)
+                        )
+                    }
+                    Text(
+                        text = "Account",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.SemiBold
+                    )
+                    Icon(
+                        imageVector = Icons.Default.ArrowBackIosNew,
+                        contentDescription = "",
+                        modifier = Modifier
+                            .padding(start = 184.dp)
+                            .size(18.dp)
+                            .rotate(180f),
+                        tint = Color.Gray.copy(alpha = 0.40f)
+                    )
+
+                }
+
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 15.dp), contentAlignment = Alignment.Center
+                ) {
+                    HorizontalDivider(color = Color.Gray.copy(alpha = 0.20f))
+                }
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 15.dp, top = 16.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(15.dp)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(8.dp))
+                            .background(Color(0XFF4BD763))
+                            .width(36.dp)
+                            .height(36.dp), contentAlignment = Alignment.Center
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.whatsapp),
+                            contentDescription = ""
+                        )
+                    }
+                    Text(
+                        text = "Chats",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.SemiBold
+                    )
+                    Icon(
+                        imageVector = Icons.Default.ArrowBackIosNew,
+                        contentDescription = "",
+                        modifier = Modifier
+                            .padding(start = 201.dp)
+                            .size(18.dp)
+                            .rotate(180f),
+                        tint = Color.Gray.copy(alpha = 0.40f)
+                    )
+
+                }
+
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 15.dp), contentAlignment = Alignment.Center
+                ) {
+                    HorizontalDivider(color = Color.Gray.copy(alpha = 0.20f))
+                }
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 15.dp, top = 10.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(15.dp)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(8.dp))
+                            .background(Color(0XFFFFF3B2F))
+                            .width(36.dp)
+                            .height(36.dp), contentAlignment = Alignment.Center
+                    ) {
+                       Image(painter = painterResource(id = R.drawable.notification), contentDescription ="" )
+                    }
+                    Text(
+                        text = "Notifications",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.SemiBold
+                    )
+                    Icon(
+                        imageVector = Icons.Default.ArrowBackIosNew,
+                        contentDescription = "",
+                        modifier = Modifier
+                            .padding(start = 110.dp)
+                            .size(18.dp)
+                            .rotate(180f),
+                        tint = Color.Gray.copy(alpha = 0.40f)
+                    )
+
+                }
+
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 15.dp), contentAlignment = Alignment.Center
+                ) {
                     HorizontalDivider(color = Color.Gray.copy(alpha = 0.20f))
                 }
                 Row(

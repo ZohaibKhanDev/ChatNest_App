@@ -45,20 +45,6 @@ fun Navigation(navController: NavHostController) {
         composable(Screen.Settings.route){
             SettingScreen(navController = navController)
         }
-        /*composable(Screen.ChatDetail.route +"/{image}/{name}",
-            arguments = listOf(
-                navArgument("image"){
-                    type= NavType.StringType
-                },
-                navArgument("name"){
-                    type= NavType.StringType
-                },
-            )
-            ){
-            val image=it?.arguments?.getString("image")
-            val name=it?.arguments?.getString("name")
-            ChatDetail(navController = navController,image,name)
-        }*/
     }
 }
 
