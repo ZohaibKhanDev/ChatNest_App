@@ -57,8 +57,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.NavType
-import androidx.navigation.navArgument
 import com.example.chatnest.R
 import com.example.chatnest.domain.model.Chat
 import com.example.chatnest.domain.model.Screen
