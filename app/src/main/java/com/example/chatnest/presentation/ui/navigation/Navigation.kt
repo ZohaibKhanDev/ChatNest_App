@@ -4,7 +4,10 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemColors
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -81,10 +84,14 @@ fun BottomNavigation(navController: NavController) {
                 }
             }}, icon = {
                 if (current==it.route){
-                    Icon(painter = painterResource(id = it.selectedIcon), contentDescription = "", tint = Color(0XFF007AFF), modifier = androidx.compose.ui.Modifier.size(18.dp))
+                    Icon(painter = painterResource(id = it.selectedIcon), contentDescription = "", tint = Color(0XFF007AFF), modifier = androidx.compose.ui.Modifier.size(
+                        25.dp
+                    ))
                 }
                 else{
-                    Icon(painter = painterResource(id = it.unSelectedIcon), contentDescription ="", tint = Color(0XFF545458), modifier = androidx.compose.ui.Modifier.size(18.dp) )
+                    Icon(painter = painterResource(id = it.unSelectedIcon), contentDescription ="", tint = Color(0XFF545458), modifier = androidx.compose.ui.Modifier.size(
+                        25.dp
+                    ) )
                 }
             },
 
@@ -95,7 +102,7 @@ fun BottomNavigation(navController: NavController) {
                     else{
                         Text(text = it.route, color = Color(0XFF545458))
                     }
-                }
+                },
                 )
         }
     }

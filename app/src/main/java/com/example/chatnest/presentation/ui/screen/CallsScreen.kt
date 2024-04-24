@@ -227,7 +227,7 @@ fun CallsScreen(navController: NavController) {
                     verticalArrangement = Arrangement.spacedBy(5.dp),
                     modifier = Modifier.clickable { navController.navigate(Screen.Chats.route) }) {
                     Image(
-                        painter = painterResource(id = R.drawable.chat),
+                        painter = painterResource(id = R.drawable.chats),
                         contentDescription = "",
                         modifier = Modifier
                             .width(17.dp)
@@ -241,7 +241,7 @@ fun CallsScreen(navController: NavController) {
                     verticalArrangement = Arrangement.spacedBy(5.dp),
                     modifier = Modifier.clickable { navController.navigate(Screen.Settings.route) }) {
                     Image(
-                        painter = painterResource(id = R.drawable.setting),
+                        painter = painterResource(id = R.drawable.settings),
                         contentDescription = "",
                         modifier = Modifier
                             .width(20.dp)

@@ -17,7 +17,7 @@ sealed class Screen(
     )
 
     object Calls :
-        Screen("Calls", "Calls", selectedIcon = R.drawable.call, unSelectedIcon = R.drawable.call)
+        Screen("Calls", "Calls", selectedIcon = R.drawable.calls, unSelectedIcon = R.drawable.calls)
 
     object Camera : Screen(
         "Camera",
@@ -27,19 +27,14 @@ sealed class Screen(
     )
 
     object Chats :
-        Screen("Chats", "Chats", selectedIcon = R.drawable.chat, unSelectedIcon = R.drawable.chat)
+        Screen("Chats", "Chats", selectedIcon = R.drawable.chats, unSelectedIcon = R.drawable.chats)
 
     object Settings : Screen(
         "Settings",
         "Settings",
-        selectedIcon = R.drawable.setting,
-        unSelectedIcon = R.drawable.setting
+        selectedIcon = R.drawable.settings,
+        unSelectedIcon = R.drawable.settings
     )
 
-    object ChatDetail : Screen(
-        "ChatDetail",
-        "ChatDetail",
-        selectedIcon = R.drawable.setting,
-        unSelectedIcon = R.drawable.setting
-    )
+
 }
