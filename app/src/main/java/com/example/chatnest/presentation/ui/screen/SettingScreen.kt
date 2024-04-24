@@ -11,12 +11,19 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIosNew
+import androidx.compose.material.icons.filled.Laptop
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.StarOutline
+import androidx.compose.material.icons.outlined.StarOutline
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.material3.Scaffold
@@ -25,6 +32,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -111,15 +119,123 @@ fun SettingScreen(navController: NavController) {
                     }
 
                     Row(
-                        modifier = Modifier.padding(end = 6.dp).width(50.dp),
+                        modifier = Modifier
+                            .padding(end = 6.dp)
+                            .width(50.dp),
                         horizontalArrangement = Arrangement.End,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Icon(imageVector = Icons.Default.ArrowBackIosNew, contentDescription = "", modifier = Modifier.rotate(180f).width(18.dp).height(20.dp), tint = Color.Gray.copy(alpha = 0.50f))
+                        Icon(
+                            imageVector = Icons.Default.ArrowBackIosNew,
+                            contentDescription = "",
+                            modifier = Modifier
+                                .rotate(180f)
+                                .width(18.dp)
+                                .height(20.dp),
+                            tint = Color.Gray.copy(alpha = 0.50f)
+                        )
                     }
                 }
             }
         }
 
+
+        Card(
+            modifier = Modifier
+                .padding(top = 229.dp)
+                .fillMaxWidth()
+                .height(120.dp),
+            elevation = CardDefaults.cardElevation(1.dp),
+            colors = CardDefaults.cardColors(Color.White)
+        ) {
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                verticalArrangement = Arrangement.SpaceBetween,
+                horizontalAlignment = Alignment.Start
+            ) {
+
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 15.dp, top = 10.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(15.dp)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(8.dp))
+                            .background(Color(0XFFFBB500))
+                            .width(36.dp)
+                            .height(36.dp), contentAlignment = Alignment.Center
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.Star,
+                            contentDescription = "",
+                            tint = Color.White
+                        )
+                    }
+                    Text(
+                        text = "Starred Messages",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.SemiBold
+                    )
+                    Icon(
+                        imageVector = Icons.Default.ArrowBackIosNew,
+                        contentDescription = "",
+                        modifier = Modifier
+                            .padding(start = 110.dp)
+                            .size(18.dp)
+                            .rotate(180f),
+                        tint = Color.Gray.copy(alpha = 0.40f)
+                    )
+
+                }
+
+                Box(modifier = Modifier.fillMaxWidth().padding(top = 15.dp), contentAlignment = Alignment.Center){
+                    HorizontalDivider(color = Color.Gray.copy(alpha = 0.20f))
+                }
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 15.dp, top = 16.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(15.dp)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(8.dp))
+                            .background(Color(0XFF07AD9F))
+                            .width(36.dp)
+                            .height(36.dp), contentAlignment = Alignment.Center
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.Laptop,
+                            contentDescription = "",
+                            tint = Color.White
+                        )
+                    }
+                    Text(
+                        text = "WhatsApp Web/Desktop",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.SemiBold
+                    )
+                    Icon(
+                        imageVector = Icons.Default.ArrowBackIosNew,
+                        contentDescription = "",
+                        modifier = Modifier
+                            .padding(start = 62.dp)
+                            .size(18.dp)
+                            .rotate(180f),
+                        tint = Color.Gray.copy(alpha = 0.40f)
+                    )
+
+                }
+
+
+            }
+        }
     }
+
+
 }
