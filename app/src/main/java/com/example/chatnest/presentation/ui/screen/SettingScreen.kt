@@ -246,7 +246,7 @@ fun SettingScreen(navController: NavController) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 399.dp)
-                .height(238.dp),
+                .height(258.dp),
             elevation = CardDefaults.cardElevation(5.dp),
             colors = CardDefaults.cardColors(
                 Color.White
@@ -372,7 +372,7 @@ fun SettingScreen(navController: NavController) {
                         imageVector = Icons.Default.ArrowBackIosNew,
                         contentDescription = "",
                         modifier = Modifier
-                            .padding(start = 110.dp)
+                            .padding(start = 146.dp)
                             .size(18.dp)
                             .rotate(180f),
                         tint = Color.Gray.copy(alpha = 0.40f)
@@ -397,18 +397,14 @@ fun SettingScreen(navController: NavController) {
                     Box(
                         modifier = Modifier
                             .clip(RoundedCornerShape(8.dp))
-                            .background(Color(0XFF07AD9F))
+                            .background(Color(0XFF4BD763))
                             .width(36.dp)
                             .height(36.dp), contentAlignment = Alignment.Center
                     ) {
-                        Icon(
-                            imageVector = Icons.Filled.Laptop,
-                            contentDescription = "",
-                            tint = Color.White
-                        )
+                        Image(painter = painterResource(id = R.drawable.data), contentDescription = "")
                     }
                     Text(
-                        text = "WhatsApp Web/Desktop",
+                        text = "Data and Storage Usage",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.SemiBold
                     )
